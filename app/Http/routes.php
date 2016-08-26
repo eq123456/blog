@@ -14,9 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/test',function(){
-	echo 'welcome!';
-});
 //Route::get('/login','Admin\IndexController@index');
 Route::group(['middleware'=>['web'],'namespace'=>'Admin','prefix'=>'admin'],function(){
 	Route::any('login','LoginController@login');//加载登录界面
@@ -24,16 +21,18 @@ Route::group(['middleware'=>['web'],'namespace'=>'Admin','prefix'=>'admin'],func
 	//Route::any('index', 'IndexController@index');
 	//Route::any('info', 'IndexController@info');
 });
-Route::group(['middleware'=>['web','Login'],'namespace'=>'Admin','prefix'=>'admin'],function(){	
+//web中间件从5.2.27版本以后默认全局加载，不需要自己手动载入，如果自己手动重复载入，会导致session无法加载的情况
+Route::group(['middleware'=>['Login'],'namespace'=>'Admin','prefix'=>'admin'],function(){	
 	Route::get('index', 'IndexController@index');
-	Route::any('element', 'IndexController@element');
 	Route::get('info', 'IndexController@info');
 	Route::get('quit', 'IndexController@quit');
-	Route::any('add', 'IndexController@add');
-	Route::any('list', 'IndexController@lists');
-	Route::any('tab', 'IndexController@tab');
-	Route::any('img', 'IndexController@img');
 	Route::any('pass', 'IndexController@pass');
+// 	Route::any('add', 'IndexController@add');
+// 	Route::any('list', 'IndexController@lists');
+// 	Route::any('tab', 'IndexController@tab');
+//	Route::any('img', 'IndexController@img');
+//	Route::any('element', 'IndexController@element');
+	
 });
 Route::group(['namespace'=>'Home'],function(){
 	Route::get('/hw',function(){

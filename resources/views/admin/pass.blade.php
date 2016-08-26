@@ -3,7 +3,7 @@
     <!--面包屑导航 开始-->
 <div class="crumb_warp">
     <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-    <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; 修改密码
+    <i class="fa fa-home"></i> <a href="{{url('admin/info')}}">首页</a> &raquo; 修改密码
 </div>
 <!--面包屑导航 结束-->
 
@@ -15,14 +15,19 @@
 </div>
 <!--结果集标题与导航组件 结束-->
 
+
 <div class="result_wrap">
-    <form method="post" onsubmit="return changePass()">
-    {{csrf_field()}}
-    @if(count($errors)>0)
-    	@foreach($errors->all() as error)
-    	{{$error}}
-    	@endforeach
-    @endif
+    <form method="post" action="">
+     {{csrf_field()}} 
+     <!-- 错误信息显示 开始 -->
+        @if (count($errors) > 0)
+            <div class="mark">
+                @foreach ($errors->all() as $error)
+                    <p>{{$error}}</p>
+                @endforeach
+            </div>
+        @endif
+<!-- 错误信息显示 结束 -->
         <table class="add_tab">
             <tbody>
             <tr>
@@ -40,7 +45,7 @@
             <tr>
                 <th><i class="require">*</i>确认密码：</th>
                 <td>
-                    <input type="password" name="password_c"> </i>再次输入密码</span>
+                    <input type="password" name="password_confirmation"> </i>再次输入密码</span>
                 </td>
             </tr>
             <tr>

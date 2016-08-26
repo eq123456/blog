@@ -65,7 +65,9 @@
                 <label>官方交流网站：</label><span><a href="http://bbs.houdunwang.com" target="_blank">http://bbs.houdunwang.com</a></span>
             </li>
             <li>
-                <label>官方交流QQ群：</label><span><a href="#"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png"></a></span>
+            <label>官方交流QQ群：</label><span>
+            <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=0acce7fd7f8e30495a37e07adf2d18c7ac3be8d45f1d299405756fa203276d2a"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="php/java/python技术交流" title="php/java/python技术交流"></a>
+            </span>
             </li>
         </ul>
     </div>
