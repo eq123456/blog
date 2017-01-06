@@ -20,8 +20,8 @@ class LoginController extends Controller
 			{
 				return back()->with('msg','验证码输入有误！');
 			}
-			$user=User::first();			
-			if($user->user_name!=$input['user_name'] || Crypt::decrypt($user->user_pass)!=$input['user_pass'])
+			$user=User::first();
+			if($user->name!=$input['user_name'] || Crypt::decrypt($user->password)!=$input['user_pass'])
 			{
 				return back()->with('msg','用户名或密码错误！');
 			}

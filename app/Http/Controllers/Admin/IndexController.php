@@ -29,18 +29,7 @@ class IndexController extends Controller
 		session(["user"=>null]);
 		return redirect('admin/login');
 	}
-	public function add(){
-		return view('admin/add');
-	}
-	public function lists(){
-		return view('admin/list');
-	}
-	public function tab(){
-		return view('admin/tab');
-	}
-	public function img(){
-		return view('admin/img');
-	}
+	
 	public function pass(){
 		if($input=Input::all()){
 			$rules=['password'=>'required|between:6,20|confirmed',];
@@ -51,9 +40,9 @@ class IndexController extends Controller
 			];
 			$validator=Validator::make($input,$rules,$message);			
 			if($validator->passes()){
-				$user=User::first();
-				if(Crypt::decrypt($user->user_pass)==$input['password_o']){
-				$user->user_pass=Crypt::encrypt($input['password_o']);
+				$user=User::first();//dd(session('user'));
+				if(Crypt::decrypt($user->password)==$input['password_o']){
+				$user->password=Crypt::encrypt($input['password_o']);
 				$user->update();
 				return redirect('admin/info'); 
 				}else{

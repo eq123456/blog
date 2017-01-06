@@ -27,16 +27,26 @@ Route::group(['middleware'=>['Login'],'namespace'=>'Admin','prefix'=>'admin'],fu
 	Route::get('info', 'IndexController@info');
 	Route::get('quit', 'IndexController@quit');
 	Route::any('pass', 'IndexController@pass');
-// 	Route::any('add', 'IndexController@add');
-// 	Route::any('list', 'IndexController@lists');
-// 	Route::any('tab', 'IndexController@tab');
-//	Route::any('img', 'IndexController@img');
 //	Route::any('element', 'IndexController@element');
 	
 });
+Route::group(['middleware'=>['web'],'namespace'=>'Admin','prefix'=>'admin'],function (){
+	Route::any('add', 'HandleController@add');
+ 	Route::any('list', 'HandleController@lists');
+	Route::any('tab', 'HandleController@tab');
+	Route::any('img', 'HandleController@img');
+});
 Route::group(['namespace'=>'Home'],function(){
-	Route::get('/hw',function(){
-		echo "hello world!";
-	});
-	Route::get('aaa','IndexController@user');
+// 	Route::get('/hw',function(){
+// 		echo "hello world!";
+// 	});
+	Route::get('index','IndexController@index');
+	Route::get('new','NewController@index');
+	Route::get('list','ListController@index');
+});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
 });
